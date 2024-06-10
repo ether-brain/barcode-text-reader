@@ -7,4 +7,4 @@ WORKDIR ./flask_app
 RUN pip3 install -r requirements.txt
 EXPOSE 5000
 WORKDIR /srv
-CMD flask run
+CMD flask run --host=0.0.0.0
