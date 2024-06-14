@@ -20,13 +20,17 @@ def get_text_from_file():
 
 
 def get_barcode(file) -> object:
-    data = decode(Image.open(fp=io.BytesIO(file)))
+    barcode_data = decode(Image.open(fp=io.BytesIO(file)))
     """ The pyzbar function 'decode' returns a list having
     'namedtuple' object inside (from pyzbar.pyzbar, row 26):
     Decoded = namedtuple('Decoded', 'data type rect polygon quality orientation')
     To access tuple elements, use indices. 
     """
-    resp = str(data[0][0])[2:-1]
+    # Get Data
+    content = str(barcode_data[0][0])[2:-1]
+    barcode_type = str(barcode_data[0][1])
+    # Flask.make_response()
+    resp = {"content": content, "barcode_type": barcode_type}
     return resp
 
 

@@ -1,10 +1,7 @@
 FROM python:latest
 RUN apt-get update
-RUN apt-get install zbar-tools
-RUN apt-get install tesseract-ocr
-COPY srv ./
+RUN apt-get install -y zbar-tools
+RUN apt-get install -y tesseract-ocr
+COPY ./ ./flask_app
 WORKDIR ./flask_app
 RUN pip3 install -r requirements.txt
-EXPOSE 5000
-WORKDIR /srv
-CMD flask run --host=0.0.0.0
